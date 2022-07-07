@@ -4,6 +4,13 @@ export function getBooks() {
   return books;
 }
 
+export function getBookById(id) {
+  const found = books.find(function (book) {
+    return book.id === id;
+  });
+  return found;
+}
+
 export function searchBooksByTitle(searchTerm) {
   return books.filter(function (book) {
     return book.title.toLowerCase().includes(searchTerm.toLowerCase());
@@ -27,12 +34,7 @@ export function searchBooksByAuthor(searchTerm) {
   });
 }
 
-export function getBookById(id) {
-  const found = books.find(function (book) {
-    return book.id === id;
-  });
-  return found;
-}
+
 
 export function createBook(book) {
   books.push(book);

@@ -5,13 +5,20 @@ import {
   getBooks,
   searchBooksByTitle,
   searchBooksByAuthor,
-  getBookById,
   createBook,
   updateBookById,
   deleteBookById,
 } from "../models/books.js";
 
+import { getBookById } from '../repository/bookRepository.js'
+
 /* books endpoints go here */
+
+router.get("/:id", async function (req, res) {
+  const id = Number(req.params.id);
+  const book = await getBookById(id);
+  res.json({ success: true, payload: book });
+});
 
 router.get("/", function (req, res) {
   if (req.query.search !== undefined) {
@@ -28,11 +35,7 @@ router.get("/", function (req, res) {
   res.json({ success: true, payload: result });
 });
 
-router.get("/:id", function (req, res) {
-  const id = Number(req.params.id);
-  const book = getBookById(id);
-  res.json({ success: true, payload: book });
-});
+
 
 router.post("/", function (req, res) {
   const newBook = req.body;
