@@ -8,9 +8,9 @@ export async function couchbaseConnect() {
 }
 
 export function getBucket(cluster) {
-  return cluster.getbucket("library");
+  return cluster.bucket("library");
 }
 
 export function getCollection(scope) {
-  return scope.getCollection("books");
+  return scope.collection("books");
 }
